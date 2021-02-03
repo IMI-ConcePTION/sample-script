@@ -11,6 +11,48 @@ extension <- c(".csv")
 dirpargen <- paste0(thisdir,"/g_parameters/")
 dirsmallcountsremoved <- paste0(thisdir,"/g_export_SMALL_COUNTS_REMOVED/")
 
+#---------------------------------------
+# understand which datasource the script is querying
+
+CDM_SOURCE<- fread(paste0(dirinput,"CDM_SOURCE.csv"))
+thisdatasource <- as.character(CDM_SOURCE[1,3])
+
+#---------------------------------------
+# assess datasource-specific parameters
+
+# datasources with prescriptions instead of dispensations
+
+datasources_prescriptions <- c('CPRD')
+thisdatasource_has_prescriptions <- ifelse(thisdatasource %in% datasources_prescriptions,TRUE,FALSE)
+
+#study_start
+
+study_start <- as.Date(as.character(20170101), date_format)
+
+# study_end
+
+study_end <- as.Date(as.character(20200531), date_format)
+
+#study_years
+
+study_years <- c("2017","2018","2019","2020")
+
+# years component analysis
+
+firstYearComponentAnalysis = '2017'
+secondYearComponentAnalysis = '2018'
+
+
+#############################################
+#SAVE METADATA TO direxp
+#############################################
+
+file.copy(paste0(dirinput,'/METADATA.csv'), direxp)
+file.copy(paste0(dirinput,'/CDM_SOURCE.csv'), direxp)
+file.copy(paste0(dirinput,'/INSTANCE.csv'), direxp)
+
+
+
 # load packages
 if (!require("haven")) install.packages("haven")
 library(haven)
@@ -47,82 +89,6 @@ source(paste0(dirmacro,"CreateFigureComponentStrategy_v1.2.R"))
 #other parameters
 
 date_format <- "%Y%m%d"
-
-
-#---------------------------------------
-# understand which datasource the script is querying
-
-CDM_SOURCE<- fread(paste0(dirinput,"CDM_SOURCE.csv"))
-thisdatasource <- as.character(CDM_SOURCE[1,3])
-
-#---------------------------------------
-# assess datasource-specific parameters
-
-# datasources with prescriptions instead of dispensations
-
-datasources_prescriptions <- c('CPRD')
-thisdatasource_has_prescriptions <- ifelse(thisdatasource %in% datasources_prescriptions,TRUE,FALSE)
-
-#study_start_datasource
-
-study_start_datasource <- vector(mode="list")
-
-study_start_datasource[['ARS']] <- as.Date(as.character(20170101), date_format)
-study_start_datasource[['FISABIO']] <- as.Date(as.character(20170101), date_format)
-study_start_datasource[['CPRD']] <- as.Date(as.character(20170101), date_format)
-study_start_datasource[['SIDIAP']] <- as.Date(as.character(20170101), date_format)
-
-study_start <- study_start_datasource[[thisdatasource]]
-
-# study_end_datasource
-
-study_end_datasource <- vector(mode="list")
-
-study_end_datasource[['ARS']] <- as.Date(as.character(20200531), date_format)
-study_end_datasource[['FISABIO']] <- as.Date(as.character(20201130), date_format)
-study_end_datasource[['CPRD']] <- as.Date(as.character(20200930), date_format)
-study_end_datasource[['SDIAP']] <- as.Date(as.character(20200630), date_format)
-
-
-
-study_end <- study_end_datasource[[thisdatasource]]
-
-
-#study_years_datasource
-
-study_years_datasource <- vector(mode="list")
-
-study_years_datasource[['ARS']] <-  c("2017","2018","2019","2020")
-study_years_datasource[['FISABIO']] <-  c("2017","2018","2019","2020")
-study_years_datasource[['CPRD']] <-  c("2017","2018","2019","2020")
-study_years_datasource[['SIDIAP']] <-  c("2017","2018","2019","2020")
-
-study_years <- study_years_datasource[[thisdatasource]]
-
-
-firstYearComponentAnalysis_datasource <- vector(mode="list")
-secondYearComponentAnalysis_datasource <- vector(mode="list")
-
-firstYearComponentAnalysis_datasource[['ARS']] <- '2018'
-firstYearComponentAnalysis_datasource[['FISABIO']] <- '2018'
-firstYearComponentAnalysis_datasource[['CPRD']] <- '2018'
-firstYearComponentAnalysis_datasource[['SIDIAP']] <- '2018'
-
-for (datas in c('ARS','FISABIO','CPRD','SIDIAP')){
-  secondYearComponentAnalysis_datasource[[datas]] = as.character(as.numeric(firstYearComponentAnalysis_datasource[[datas]])+1)
-}
-
-firstYearComponentAnalysis = firstYearComponentAnalysis_datasource[[thisdatasource]]
-secondYearComponentAnalysis = secondYearComponentAnalysis_datasource[[thisdatasource]]
-
-
-#############################################
-#SAVE METADATA TO direxp
-#############################################
-
-file.copy(paste0(dirinput,'/METADATA.csv'), direxp)
-file.copy(paste0(dirinput,'/CDM_SOURCE.csv'), direxp)
-file.copy(paste0(dirinput,'/INSTANCE.csv'), direxp)
 
 
 #FUNCTION TO COMPUTE AGE
