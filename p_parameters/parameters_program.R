@@ -4,6 +4,7 @@ dirinput <- paste0(dirbase,"/i_input/")
 # set other directories
 diroutput <- paste0(thisdir,"/g_output/")
 dirtemp <- paste0(thisdir,"/g_intermediate/")
+dirfromCDM <- paste0(thisdir,"/g_fromCDM/")
 direxp <- paste0(thisdir,"/g_export/")
 dirmacro <- paste0(thisdir,"/p_macro/")
 dirfigure <- paste0(thisdir,"/g_figure/")
@@ -11,11 +12,40 @@ extension <- c(".csv")
 dirpargen <- paste0(thisdir,"/g_parameters/")
 dirsmallcountsremoved <- paste0(thisdir,"/g_export_SMALL_COUNTS_REMOVED/")
 
+
+
+
+# load packages
+if (!require("haven")) install.packages("haven")
+library(haven)
+if (!require("tidyverse")) install.packages("tidyverse")
+library(dplyr)
+if (!require("lubridate")) install.packages("lubridate")
+library(lubridate)
+if (!require("data.table")) install.packages("data.table")
+library(data.table)
+if (!require("AdhereR")) install.packages("AdhereR")
+library(AdhereR)
+if (!require("stringr")) install.packages("stringr")
+library(stringr)
+if (!require("purrr")) install.packages("purrr")
+library(purrr)
+if (!require("readr")) install.packages("readr")
+library(readr)
+if (!require("dplyr")) install.packages("dplyr")
+library(dplyr)
+if (!require("survival")) install.packages("survival")
+library(survival)
+
 #---------------------------------------
 # understand which datasource the script is querying
 
 CDM_SOURCE<- fread(paste0(dirinput,"CDM_SOURCE.csv"))
 thisdatasource <- as.character(CDM_SOURCE[1,3])
+
+#other parameters
+
+date_format <- "%Y%m%d"
 
 #---------------------------------------
 # assess datasource-specific parameters
@@ -52,29 +82,6 @@ file.copy(paste0(dirinput,'/CDM_SOURCE.csv'), direxp)
 file.copy(paste0(dirinput,'/INSTANCE.csv'), direxp)
 
 
-
-# load packages
-if (!require("haven")) install.packages("haven")
-library(haven)
-if (!require("tidyverse")) install.packages("tidyverse")
-library(dplyr)
-if (!require("lubridate")) install.packages("lubridate")
-library(lubridate)
-if (!require("data.table")) install.packages("data.table")
-library(data.table)
-if (!require("AdhereR")) install.packages("AdhereR")
-library(AdhereR)
-if (!require("stringr")) install.packages("stringr")
-library(stringr)
-if (!require("purrr")) install.packages("purrr")
-library(purrr)
-if (!require("readr")) install.packages("readr")
-library(readr)
-if (!require("dplyr")) install.packages("dplyr")
-library(dplyr)
-if (!require("survival")) install.packages("survival")
-library(survival)
-
 # load macros
 
 source(paste0(dirmacro,"CreateConceptSetDatasets_v10.R"))
@@ -85,10 +92,6 @@ source(paste0(dirmacro,"CreateFlowChart.R"))
 source(paste0(dirmacro,"CountPersonTimeV9.2.R"))
 source(paste0(dirmacro,"ApplyComponentStrategy_v12.R"))
 source(paste0(dirmacro,"CreateFigureComponentStrategy_v1.2.R"))
-
-#other parameters
-
-date_format <- "%Y%m%d"
 
 
 #FUNCTION TO COMPUTE AGE

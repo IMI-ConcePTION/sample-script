@@ -14,7 +14,7 @@ CreateConceptSetDatasets(concept_set_names = c(OUTCOMES_conceptssets),
                          concept_set_codes_excl = concept_set_codes_our_study_excl,
                          discard_from_environment = T,
                          dirinput = dirinput,
-                         diroutput = dirtemp,
+                         diroutput = dirfromCDM,
                          extension = c("csv"))
 
 CreateConceptSetDatasets(concept_set_names = c(COV_conceptssets),
@@ -29,7 +29,7 @@ CreateConceptSetDatasets(concept_set_names = c(COV_conceptssets),
                          concept_set_codes_excl = concept_set_codes_our_study_excl,
                          discard_from_environment = T,
                          dirinput = dirinput,
-                         diroutput = dirtemp,
+                         diroutput = dirfromCDM,
                          extension = c("csv"))
 
 CreateConceptSetDatasets(concept_set_names = c(DRUGS_conceptssets),
@@ -44,5 +44,5 @@ CreateConceptSetDatasets(concept_set_names = c(DRUGS_conceptssets),
                          concept_set_codes_excl = concept_set_codes_our_study_excl,
                          discard_from_environment = T,
                          dirinput = dirinput,
-                         diroutput = dirtemp,
+                         diroutput = dirfromCDM,
                          extension = c("csv"))

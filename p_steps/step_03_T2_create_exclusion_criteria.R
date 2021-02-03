@@ -10,7 +10,8 @@ PERSONS<-PERSONS[,date_of_birth:=lubridate::ymd(with(PERSONS, paste(year_of_birt
 PERSONS<-suppressWarnings(PERSONS[,date_death:=lubridate::ymd(with(PERSONS, paste(year_of_death, month_of_death, day_of_death,sep="-")))])
 
 #CONVERT SEX to BINARY 0/1
-PERSONS<-PERSONS[,sex:=as.numeric(ifelse(sex_at_instance_creation=="M",1,0))] #1:M 0:F
+PERSONS<-PERSONS[,sex:=as.numeric(ifelse(sex_at_instance_creation=="M",1,0))]
+PERSONS<-PERSONS[,not_female:=ifelse(sex==1,1,0)] #1:M 0:F
 #[,age_at_index_date:=age_fast(date_of_birth,index_date)][age_at_index_date<12 | age_at_index_date>55,age:=1]
 
 PERSONS<-PERSONS[is.na(sex) | is.na(date_of_birth),sex_or_birth_date_missing:=1]
@@ -20,15 +21,9 @@ PERSONS<-PERSONS[year(date_of_birth)<1899 | year(date_of_birth)>2020, birth_date
 PERSONS_in_OP<-unique(merge(PERSONS, OBSERVATION_PERIODS, all.x = T, by="person_id")[is.na(op_start_date),no_op_start_date:=1][is.na(no_op_start_date),no_op_start_date:=0][,MAXop_start_date:=max(no_op_start_date), by="person_id"][MAXop_start_date==no_op_start_date,],by="person_id")
 D3_exclusion_no_op_start_date<-PERSONS_in_OP[,.(person_id,sex_or_birth_date_missing,birth_date_absurd,no_op_start_date)]
 
-#save(D3_exclusion_no_op_start_date,file=paste0(dirtemp,"D3_exclusion_no_op_start_date.RData"))
-
-
 ## KEEP ONLY NEED VARs
 D3_inclusion_from_PERSONS <- PERSONS[,.(person_id,sex,date_of_birth,date_death)]
 
-#save(D3_inclusion_from_PERSONS,file=paste0(dirtemp,"D3_inclusion_from_PERSONS.RData"))
-
-#rm(PERSONS)
 
 # OBSERVATION PERIODS -----------------------------------------------------
 
@@ -40,13 +35,10 @@ output_spells_category_enriched <- output_spells_category_enriched[,one_year_obs
 
 output_spells_category_enriched <- output_spells_category_enriched[entry_spell_category<date_of_birth+60, entry_spell_category:=date_of_birth]
 
-# output_spells_category_enriched <- output_spells_category_enriched[prova==1, diff:=unclass(entry_spell_category-date_of_birth)]
-# output_spells_category_enriched <- output_spells_category_enriched[prova==1, diff:=as.numeric(diff)]
-
-
 ## CALCULATE study_entry_date
 output_spells_category_enriched <- output_spells_category_enriched[,study_entry_date:=max(date_of_birth,study_start,one_year_obs),by="person_id"]
 output_spells_category_enriched <- output_spells_category_enriched[date_of_birth>study_start & date_of_birth==entry_spell_category, study_entry_date:=date_of_birth]
+
 
 ## KEEP ONLY SPELLS THAT INCLUDE study_entry_date AND WHOSE entry_spell_category IS < exit_spell_category
 
@@ -71,6 +63,14 @@ D3_exclusion_observed_time_no_overlap <-merge(PERSONS[,.(person_id)],D3_exclusio
 
 D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(insufficient_run_in),insufficient_run_in:=1]
 
+
+# compute age at study entry date
+D3_exclusion_observed_time_no_overlap <- D3_exclusion_observed_time_no_overlap[,age_at_study_entry_date:=age_fast(date_birth,study_entry_date)]
+
+# compute age non in fertile age at study entry date
+D3_exclusion_observed_time_no_overlap <- D3_exclusion_observed_time_no_overlap[age_at_study_entry_date<12 | age_at_study_entry_date>55,not_in_fertile_age_at_study_entry_date := 1][is.na(not_in_fertile_age_at_study_entry_date),not_in_fertile_age_at_study_entry_date := 0]
+
+
 # there is some people whose death has not been recorded in the exit_spell, let's remove them
 
 D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(date_death),min_death_exit_spell:=min(date_death,exit_spell_category)]
@@ -88,9 +88,6 @@ D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[,.
 D3_inclusion_from_OBSERVATION_PERIODS <- output_spells_category_enriched[spell_contains_study_entry_date==1,.(person_id,study_entry_date,exit_spell_category)]
  
 D3_inclusion_from_OBSERVATION_PERIODS <-merge(PERSONS[,.(person_id)],D3_inclusion_from_OBSERVATION_PERIODS,by="person_id", all.x = T)
-# 
-# save(D3_inclusion_from_OBSERVATION_PERIODS,file=paste0(dirtemp,"D3_inclusion_from_OBSERVATION_PERIODS.RData"))
-# save(D3_exclusion_observed_time_no_overlap,file=paste0(dirtemp,"D3_exclusion_observed_time_no_overlap.RData"))
 
 
 PERSONS_OP <- merge(D3_inclusion_from_PERSONS,

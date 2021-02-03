@@ -6,7 +6,7 @@ load(paste0(dirtemp,"D3_selection_criteria.RData"))
 
 selected_population <- CreateFlowChart(
   dataset = D3_selection_criteria,
-  listcriteria = c("sex_or_birth_date_missing","birth_date_absurd","no_op_start_date","death_before_study_entry","observed_time_no_overlap","insufficient_run_in"),
+  listcriteria = c("sex_or_birth_date_missing","birth_date_absurd","no_op_start_date","death_before_study_entry","observed_time_no_overlap","insufficient_run_in","not_female","not_in_fertile_age_at_study_entry_date"),
   flowchartname = "FlowChart" )
 
 
