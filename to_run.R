@@ -2,6 +2,7 @@
 # ConcePTION TOY SCRIPT IR
 # # authors: Claudia Bartolini, Rosa Gini, Olga Paoletti
 
+# pippo
 
 rm(list=ls(all.names=TRUE))
 
