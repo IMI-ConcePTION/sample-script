@@ -43,7 +43,7 @@ print(OUTCOME)
         addvarOUTCOME[[counter]]=list(c(namenewvar),"0",paste0("is.na(",namenewvar,")"))
       }
     }
-    assign(paste0("OUTCOME_",type),MergeFilterAndCollapse(list(get(load(paste0(dirtemp,OUTCOME, "_",type,".RData")))),
+    assign(paste0("OUTCOME_",type),MergeFilterAndCollapse(list(get(load(paste0(dirfromCDM,OUTCOME, "_",type,".RData")))),
                                            condition= "date>=study_entry_date - 365",
                                            key = c("person_id"),
                                            datasetS = COHORT_TMP,

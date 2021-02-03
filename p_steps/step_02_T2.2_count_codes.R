@@ -9,12 +9,13 @@ for (year in study_years) {
 
 
 for (conceptset in concept_sets_of_our_study ) {
+  print(conceptset)
   if (concept_set_domains[[conceptset]]=="Diagnosis") meaning<-"meaning_of_event"
   else{ meaning<-"meaning_of_drug_record"
   }
   for (year in study_years) {
     nameobject <- paste0("D4_",conceptset,"code_counts",year)
-    assign(nameobject, MergeFilterAndCollapse(list(get(load(paste0(dirtemp,conceptset,".RData")))),
+    assign(nameobject, MergeFilterAndCollapse(list(get(load(paste0(dirfromCDM,conceptset,".RData")))),
                                           condition = conditionYear[[year]],
                                           additionalvar = list(list(c("n"),1)),
                                           strata=c("codvar",meaning),

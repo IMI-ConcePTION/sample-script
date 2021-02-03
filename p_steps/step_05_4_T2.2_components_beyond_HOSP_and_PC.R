@@ -21,8 +21,8 @@ for (OUTCOME in OUTCOME_events) {
   print(OUTCOME)
   namedatasetnarrow <- paste0(OUTCOME,"_narrow")
   namedatasetpossible <- paste0(OUTCOME,"_possible")
-  load(paste0(dirtemp,namedatasetnarrow,'.RData'))
-  load(paste0(dirtemp,namedatasetpossible,'.RData'))
+  load(paste0(dirfromCDM,namedatasetnarrow,'.RData'))
+  load(paste0(dirfromCDM,namedatasetpossible,'.RData'))
   
   
   dataset <- vector(mode="list")
