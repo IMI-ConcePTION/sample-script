@@ -22,4 +22,4 @@ setkeyv(
   )
 
  
-save(output_spells_category,file=paste0(dirtemp,"output_spells_category.RData"))
+save(output_spells_category,file=paste0(dirfromCDM,"output_spells_category.RData"))

@@ -1,0 +1,17 @@
+codvar,meaning_of_drug_record,count_n
+R03BA05,dispensing_in_hospital_pharmacy_for_home_use,1
+R03DX05,dispensing_in_hospital_pharmacy_for_home_use,90
+R03AK10,dispensing_in_hospital_pharmacy_for_home_use,1
+R03AC02,dispensing_in_community_pharmacy,5
+R03DC03,dispensing_in_community_pharmacy,3
+R03AK07,dispensing_in_community_pharmacy,1
+R03BA01,dispensing_in_community_pharmacy,3
+R03AK10,dispensing_in_community_pharmacy,1
+R03AL03,dispensing_in_community_pharmacy,2
+R03AL02,dispensing_in_community_pharmacy,2
+R03BA03,dispensing_in_community_pharmacy,1
+R03BB04,dispensing_in_community_pharmacy,1
+R03BA02,dispensing_in_community_pharmacy,1
+R03BB06,dispensing_in_community_pharmacy,2
+R03AK08,dispensing_in_community_pharmacy,1
+R03BA05,dispensing_in_community_pharmacy,1

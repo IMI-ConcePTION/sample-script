@@ -1,0 +1,5 @@
+A_sex_or_birth_date_missing,B_birth_date_absurd,C_no_op_start_date,D_death_before_study_entry,E_observed_time_no_overlap,F_insufficient_run_in,G_not_female,H_not_in_fertile_age_at_study_entry_date,N
+1,1,1,1,0,0,0,0,37
+1,1,1,1,1,0,0,0,11
+1,1,1,1,1,1,1,0,271
+1,1,1,1,1,1,1,1,662
