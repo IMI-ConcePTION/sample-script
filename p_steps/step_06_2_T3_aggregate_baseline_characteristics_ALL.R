@@ -4,9 +4,9 @@
 load(paste0(diroutput,"D3_study_population_cov_ALL.RData"))
 
 #names_var<-c(names(D3_study_population_cov_ALL)[6:length(names(D3_study_population_cov_ALL))])
-COVnames<-c("CV","COVCANCER","COVCOPD","COVHIV","COVCKD","COVDIAB","COVOBES","COVSICKLE")
+COVnames<-c("CV","COVCOPD","COVHIV","COVCKD","COVDIAB")
 
-names_var <- c("IMMUNOSUPPR_at_study_entry","all_covariates_non_CONTR")
+names_var <- c("all_covariates_non_CONTR")
 for (cov in COVnames ){
   if ( cov!="CV" ){
     nameDP =  paste0("DP_",cov,"_at_study_entry")

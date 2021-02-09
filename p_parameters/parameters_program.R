@@ -113,3 +113,5 @@ age_fast = function(from, to) {
            (to_lt$mon == from_lt$mon & to_lt$mday < from_lt$mday),
          age - 1, age)
 }
+
+Agebands =c(-1, 19, 29, 39, 49, Inf)

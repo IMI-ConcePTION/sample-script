@@ -9,13 +9,13 @@ meanings_of_this_study[["PC"]]=c("primary_care_event","primary_care_diagnosis")
 
 
 OUTCOME_events<-list()
-OUTCOME_events<-c("ALI","AKI")
+OUTCOME_events<-c("ALI","AKI","MYOCARD")
 
-OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","AKI_narrow","AKI_possible")
+OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","AKI_narrow","AKI_possible","MYOCARD_narrow","MYOCARD_possible")
 
-COV_conceptssets <- c("COVCOPD","COVHIV","COVCKD","COVDIAB","CAD_narrow","CAD_possible","HF_narrow","HF_possible","STRCARD_narrow","STRCARD_possible","ARR_narrow","ARR_possible")
+COV_conceptssets <- c("COVCOPD","COVHIV","COVCKD","CAD_narrow","CAD_possible","HF_narrow","HF_possible")
 
-DRUGS_conceptssets <- c("DP_COVDIAB","DP_CVD","DP_COVHIV","DP_COVCKD","DP_COVCOPD")
+DRUGS_conceptssets <- c("DP_CVD","DP_COVHIV","DP_COVCKD","DP_COVCOPD","DP_COVDIAB")
 
 concept_sets_of_our_study <- c(OUTCOMES_conceptssets,COV_conceptssets, DRUGS_conceptssets)
 
@@ -27,6 +27,8 @@ concept_set_domains[["ALI_narrow"]] = "Diagnosis"
 concept_set_domains[["ALI_possible"]] = "Diagnosis"
 concept_set_domains[["AKI_narrow"]] = "Diagnosis"
 concept_set_domains[["AKI_possible"]] = "Diagnosis"
+concept_set_domains[["MYOCARD_narrow"]] = "Diagnosis"
+concept_set_domains[["MYOCARD_possible"]] = "Diagnosis"
 concept_set_domains[["CAD_narrow"]] = "Diagnosis"
 concept_set_domains[["CAD_possible"]] = "Diagnosis"
 concept_set_domains[["COVCOPD"]] = "Diagnosis"
@@ -81,6 +83,22 @@ concept_set_codes_our_study_excl[["AKI_possible"]][["ICPC"]] <- c("U05001","U880
 concept_set_codes_our_study[["AKI_narrow"]][["SNOMED"]] <- c("D-4294","D-6345","D-6510","D-6511","D-6516","D-6760","D-8017","F-66105","M-40000","M-53130","M-53150","NOCODE","111407006","123308008","13010001","139460001","14669001","155850003","155854007","155855008","156092003","157343006","157666004","158479000","158493007","197578003","197649009","197653006","197656003","197657007","197680004","197750002","197751003","197752005","198524000","207182009","207199005","210209001","212376001","236386005","236423003","236424009","23697004","2472002","264536006","266553002","266613008","266616000","269158000","270918008","28689008","298015003","35455006","367481000119108","40095003","42399005","445646001","51292008","55655006","59400006","61503006","723188008","723189000","733839001")
 concept_set_codes_our_study[["AKI_possible"]][["SNOMED"]] <- c("D-1085","D-1185","D-6502","D-6704","D-7374","F-10513","F-66104","F-70104","113075003","139461002","144007006","154757004","154763008","155299005","155850003","155871008","158477003","158478008","158482005","166713004","166718008","190887001","190895002","190897005","19351000","194773000","194775007","194776008","194782006","197578003","197588002","20165001","207180001","207181002","207185006","266230002","266612003","266613008","266624005","266627003","271845002","274108006","28560003","365757006","37472003","38481006","51387008","59455009","66978005","816082000","83128009","86234004","90708001")
 concept_set_codes_our_study_excl[["AKI_possible"]][["SNOMED"]] <- c("D-4294","D-6345","D-6510","D-6511","D-6516","D-6760","D-8017","F-66105","M-40000","M-53130","M-53150","NOCODE","111407006","123308008","13010001","139460001","14669001","155850003","155854007","155855008","156092003","157343006","157666004","158479000","158493007","197578003","197649009","197653006","197656003","197657007","197680004","197750002","197751003","197752005","198524000","207182009","207199005","210209001","212376001","236386005","236423003","236424009","23697004","2472002","264536006","266553002","266613008","266616000","269158000","270918008","28689008","298015003","35455006","367481000119108","40095003","42399005","445646001","51292008","55655006","59400006","61503006","723188008","723189000","733839001")
+
+
+#--------------------------
+# MYOCARD
+concept_set_codes_our_study[["MYOCARD_narrow"]][["ICD9"]] <- c("420.99","422.0","422.9","422.99","423.9","429.0")
+concept_set_codes_our_study[["MYOCARD_possible"]][["ICD9"]] <- c()
+concept_set_codes_our_study[["MYOCARD_narrow"]][["ICD10"]] <- c("I51.4")
+concept_set_codes_our_study[["MYOCARD_possible"]][["ICD10"]] <- c("I31.9")
+concept_set_codes_our_study_excl[["MYOCARD_possible"]][["ICD10"]] <- c("I51.4")
+concept_set_codes_our_study[["MYOCARD_narrow"]][["READ"]] <- c("G520.","G520z","G52y.","G52yz","G5y0.","Gyu50","Gyu52","Gyu53","Gyu54","Gyu5F","Gyu5H","Gyu5J","Gyu5K","Gyu5L","X201i","X201j","X779D","XaDyL","G520.","G520z","G52y.","G52yz","G53..","G5y0.","Gyu50","Gyu52","Gyu53","Gyu54","Gyu5F","Gyu5H","Gyu5J","Gyu5K","Gyu5L")
+concept_set_codes_our_study[["MYOCARD_possible"]][["READ"]] <- c()
+concept_set_codes_our_study[["MYOCARD_narrow"]][["ICPC"]] <- c("K84010")
+concept_set_codes_our_study[["MYOCARD_possible"]][["ICPC"]] <- c()
+concept_set_codes_our_study[["MYOCARD_narrow"]][["SNOMED"]] <- c("D-7480","M-40000","NOCODE","155341007","155380004","194942007","194951004","194952006","194960007","195119007","195552008","195554009","195555005","195556006","195568002","195570006","195571005","195572003","195573008","251060004","266295005","3238004","50920009","55855009")
+concept_set_codes_our_study[["MYOCARD_possible"]][["SNOMED"]] <- c()
+
 
 #--------------------------
 # HF

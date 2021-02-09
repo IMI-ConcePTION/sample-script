@@ -12,7 +12,7 @@ PERSONS<-suppressWarnings(PERSONS[,date_death:=lubridate::ymd(with(PERSONS, past
 #CONVERT SEX to BINARY 0/1
 PERSONS<-PERSONS[,sex:=as.numeric(ifelse(sex_at_instance_creation=="M",1,0))]
 PERSONS<-PERSONS[,not_female:=ifelse(sex==1,1,0)] #1:M 0:F
-#[,age_at_index_date:=age_fast(date_of_birth,index_date)][age_at_index_date<12 | age_at_index_date>55,age:=1]
+PERSONS<-PERSONS[,age_at_index_date:=age_fast(date_of_birth,study_start)][age_at_index_date<12 | age_at_index_date>55,not_in_fertile_age_at_study_entry_date:=1][is.na(not_in_fertile_age_at_study_entry_date),not_in_fertile_age_at_study_entry_date:=0]
 
 PERSONS<-PERSONS[is.na(sex) | is.na(date_of_birth),sex_or_birth_date_missing:=1]
 PERSONS<-PERSONS[year(date_of_birth)<1899 | year(date_of_birth)>2020, birth_date_absurd:=1]
@@ -22,12 +22,12 @@ PERSONS_in_OP<-unique(merge(PERSONS, OBSERVATION_PERIODS, all.x = T, by="person_
 D3_exclusion_no_op_start_date<-PERSONS_in_OP[,.(person_id,sex_or_birth_date_missing,birth_date_absurd,no_op_start_date)]
 
 ## KEEP ONLY NEED VARs
-D3_inclusion_from_PERSONS <- PERSONS[,.(person_id,sex,date_of_birth,date_death)]
+D3_inclusion_from_PERSONS <- PERSONS[,.(person_id,sex,date_of_birth,date_death,not_in_fertile_age_at_study_entry_date,not_female)]
 
 
 # OBSERVATION PERIODS -----------------------------------------------------
 
-load(paste0(dirtemp,"output_spells_category.RData"))
+load(paste0(dirfromCDM,"output_spells_category.RData"))
 
 output_spells_category_enriched <- merge(output_spells_category,D3_inclusion_from_PERSONS, by="person_id")
 
@@ -65,7 +65,7 @@ D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is
 
 
 # compute age at study entry date
-D3_exclusion_observed_time_no_overlap <- D3_exclusion_observed_time_no_overlap[,age_at_study_entry_date:=age_fast(date_birth,study_entry_date)]
+D3_exclusion_observed_time_no_overlap <- D3_exclusion_observed_time_no_overlap[,age_at_study_entry_date:=age_fast(date_of_birth,study_entry_date)]
 
 # compute age non in fertile age at study entry date
 D3_exclusion_observed_time_no_overlap <- D3_exclusion_observed_time_no_overlap[age_at_study_entry_date<12 | age_at_study_entry_date>55,not_in_fertile_age_at_study_entry_date := 1][is.na(not_in_fertile_age_at_study_entry_date),not_in_fertile_age_at_study_entry_date := 0]
@@ -103,7 +103,7 @@ PERSONS_OP3 <- merge(PERSONS_OP2,
                      by="person_id",
                      all.x = T)
 
-coords<-c("sex_or_birth_date_missing","birth_date_absurd","insufficient_run_in","observed_time_no_overlap","no_op_start_date","death_before_study_entry")
+coords<-c("sex_or_birth_date_missing","birth_date_absurd","insufficient_run_in","observed_time_no_overlap","no_op_start_date","death_before_study_entry","not_female","not_in_fertile_age_at_study_entry_date")
 PERSONS_OP3[, (coords) := replace(.SD, is.na(.SD), 0), .SDcols = coords]
 
 # CREATE study_exit_date

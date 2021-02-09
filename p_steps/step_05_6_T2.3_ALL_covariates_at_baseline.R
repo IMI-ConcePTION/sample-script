@@ -1,7 +1,7 @@
 # ----------------------------------
 # for all covariates create binary variable drug procy OR diagnosis; also create binary 'overall'
 
-COVnames<-c("CV","COVCANCER","COVCOPD","COVHIV","COVCKD","COVDIAB","COVOBES","COVSICKLE")
+COVnames<-c("CV","COVCOPD","COVHIV","COVCKD","COVDIAB")
 
 # create variable added to study population
 

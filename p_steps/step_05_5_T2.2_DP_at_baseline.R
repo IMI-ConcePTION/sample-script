@@ -7,7 +7,7 @@ COHORT_TMP <- D4_study_population[,.(person_id, study_entry_date)]
 D3_study_population_DP <- COHORT_TMP
 
 for (conceptset in DRUGS_conceptssets) {
-    load(paste0(dirtemp,conceptset,".RData"))
+    load(paste0(dirfromCDM,conceptset,".RData"))
     output <- MergeFilterAndCollapse(list(get(conceptset)),
                                      condition= "date >= study_entry_date - 365 & date<=study_entry_date",
                                      key = c("person_id"),
