@@ -7,7 +7,7 @@ OBSERVATION_PERIODS <- fread(paste0(dirinput,"OBSERVATION_PERIODS.csv"))
 
 #STANDARDIZE THE DATE FORMAT WITH  LUBRIDATE
 PERSONS<-PERSONS[,date_of_birth:=lubridate::ymd(with(PERSONS, paste(year_of_birth, month_of_birth, day_of_birth,sep="-")))]
-PERSONS<-suppressWarnings(PERSONS[,date_death:=lubridate::ymd(with(PERSONS, paste(year_of_death, month_of_death, day_of_death,sep="-")))])
+PERSONS<-suppressWarnings(PERSONS[,date_of_death:=lubridate::ymd(with(PERSONS, paste(year_of_death, month_of_death, day_of_death,sep="-")))])
 
 #CONVERT SEX to BINARY 0/1
 PERSONS<-PERSONS[,sex:=as.numeric(ifelse(sex_at_instance_creation=="M",1,0))]
@@ -22,7 +22,7 @@ PERSONS_in_OP<-unique(merge(PERSONS, OBSERVATION_PERIODS, all.x = T, by="person_
 D3_exclusion_no_op_start_date<-PERSONS_in_OP[,.(person_id,sex_or_birth_date_missing,birth_date_absurd,no_op_start_date)]
 
 ## KEEP ONLY NEED VARs
-D3_inclusion_from_PERSONS <- PERSONS[,.(person_id,sex,date_of_birth,date_death,not_in_fertile_age_at_study_entry_date,not_female)]
+D3_inclusion_from_PERSONS <- PERSONS[,.(person_id,sex,date_of_birth,date_of_death,not_in_fertile_age_at_study_entry_date,not_female)]
 
 
 # OBSERVATION PERIODS -----------------------------------------------------
@@ -73,11 +73,11 @@ D3_exclusion_observed_time_no_overlap <- D3_exclusion_observed_time_no_overlap[a
 
 # there is some people whose death has not been recorded in the exit_spell, let's remove them
 
-D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(date_death),min_death_exit_spell:=min(date_death,exit_spell_category)]
+D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(date_of_death),min_death_exit_spell:=min(date_of_death,exit_spell_category)]
 
-D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(min_death_exit_spell) & date_death < study_entry_date ,death_before_study_entry:=1]
+D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(min_death_exit_spell) & date_of_death < study_entry_date ,death_before_study_entry:=1]
 
-D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(min_death_exit_spell) & date_death < exit_spell_category ,exit_spell_category:=date_death]
+D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(min_death_exit_spell) & date_of_death < exit_spell_category ,exit_spell_category:=date_of_death]
 
 D3_exclusion_observed_time_no_overlap <-D3_exclusion_observed_time_no_overlap[is.na(death_before_study_entry),death_before_study_entry:=0]
 
@@ -107,7 +107,7 @@ coords<-c("sex_or_birth_date_missing","birth_date_absurd","insufficient_run_in",
 PERSONS_OP3[, (coords) := replace(.SD, is.na(.SD), 0), .SDcols = coords]
 
 # CREATE study_exit_date
-D3_selection_criteria <- PERSONS_OP3[,study_exit_date:=min(date_death, exit_spell_category, study_end, na.rm = T), by="person_id"]
+D3_selection_criteria <- PERSONS_OP3[,study_exit_date:=min(date_of_death, exit_spell_category, study_end, na.rm = T), by="person_id"][,-"exit_spell_category"]
 
 
 save(D3_selection_criteria,file=paste0(dirtemp,"D3_selection_criteria.RData"))
