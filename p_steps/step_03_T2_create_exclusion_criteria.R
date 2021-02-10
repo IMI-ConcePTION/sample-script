@@ -12,7 +12,7 @@ PERSONS<-suppressWarnings(PERSONS[,date_of_death:=lubridate::ymd(with(PERSONS, p
 #CONVERT SEX to BINARY 0/1
 PERSONS<-PERSONS[,sex:=as.numeric(ifelse(sex_at_instance_creation=="M",1,0))]
 PERSONS<-PERSONS[,not_female:=ifelse(sex==1,1,0)] #1:M 0:F
-PERSONS<-PERSONS[,age_at_index_date:=age_fast(date_of_birth,study_start)][age_at_index_date<12 | age_at_index_date>55,not_in_fertile_age_at_study_entry_date:=1][is.na(not_in_fertile_age_at_study_entry_date),not_in_fertile_age_at_study_entry_date:=0]
+PERSONS<-PERSONS[,age_at_study_entry:=age_fast(date_of_birth,study_start)][age_at_study_entry<12 | age_at_study_entry>55,not_in_fertile_age_at_study_entry_date:=1][is.na(not_in_fertile_age_at_study_entry_date),not_in_fertile_age_at_study_entry_date:=0]
 
 PERSONS<-PERSONS[is.na(sex) | is.na(date_of_birth),sex_or_birth_date_missing:=1]
 PERSONS<-PERSONS[year(date_of_birth)<1899 | year(date_of_birth)>2020, birth_date_absurd:=1]
@@ -22,7 +22,7 @@ PERSONS_in_OP<-unique(merge(PERSONS, OBSERVATION_PERIODS, all.x = T, by="person_
 D3_exclusion_no_op_start_date<-PERSONS_in_OP[,.(person_id,sex_or_birth_date_missing,birth_date_absurd,no_op_start_date)]
 
 ## KEEP ONLY NEED VARs
-D3_inclusion_from_PERSONS <- PERSONS[,.(person_id,sex,date_of_birth,date_of_death,not_in_fertile_age_at_study_entry_date,not_female)]
+D3_inclusion_from_PERSONS <- PERSONS[,.(person_id,sex,age_at_study_entry,date_of_birth,date_of_death,not_in_fertile_age_at_study_entry_date,not_female)]
 
 
 # OBSERVATION PERIODS -----------------------------------------------------

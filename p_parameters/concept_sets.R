@@ -11,9 +11,9 @@ meanings_of_this_study[["PC"]]=c("primary_care_event","primary_care_diagnosis")
 OUTCOME_events<-list()
 OUTCOME_events<-c("ALI","AKI","MYOCARD")
 
-OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","AKI_narrow","AKI_possible","MYOCARD_narrow","MYOCARD_possible")
+OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","AKI_narrow","AKI_possible","MYOCARD_narrow","MYOCARD_possible","CAD_narrow","CAD_possible","HF_narrow","HF_possible")
 
-COV_conceptssets <- c("COVCOPD","COVHIV","COVCKD","CAD_narrow","CAD_possible","HF_narrow","HF_possible")
+COV_conceptssets <- c("COVCOPD","COVHIV","COVCKD","COVDIAB")
 
 DRUGS_conceptssets <- c("DP_CVD","DP_COVHIV","DP_COVCKD","DP_COVCOPD","DP_COVDIAB")
 
