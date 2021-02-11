@@ -49,6 +49,7 @@ for (OUTCOME in OUTCOME_events) {
                                    "Narrow PC",
                                    "Possible HOSP",
                                    "Possible PC"),
+                                 dirfigure=dirfigure,
                                  figure_name=figure_name,      ## optional
                                  K=1000,
                                  figure=T,

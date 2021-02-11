@@ -98,9 +98,10 @@ source(paste0(dirmacro,"MergeFilterAndCollapse_v5.R"))
 source(paste0(dirmacro,"CreateSpells_v8DT.R"))
 source(paste0(dirmacro,"CreateFlowChart.R"))
 source(paste0(dirmacro,"CountPersonTimeV9.2.R"))
-source(paste0(dirmacro,"ApplyComponentStrategy_v12.R"))
-source(paste0(dirmacro,"CreateFigureComponentStrategy_v1.2.R"))
-
+#source(paste0(dirmacro,"ApplyComponentStrategy_v12.R"))
+#source(paste0(dirmacro,"CreateFigureComponentStrategy_v1.2.R"))
+source(paste0(dirmacro,"ApplyComponentStrategy_v13_1.R"))
+source(paste0(dirmacro,"CreateFigureComponentStrategy_v3.R"))
 
 #FUNCTION TO COMPUTE AGE
 age_fast = function(from, to) {

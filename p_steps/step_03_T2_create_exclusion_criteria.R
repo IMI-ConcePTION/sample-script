@@ -103,7 +103,7 @@ PERSONS_OP3 <- merge(PERSONS_OP2,
                      by="person_id",
                      all.x = T)
 
-coords<-c("sex_or_birth_date_missing","birth_date_absurd","insufficient_run_in","observed_time_no_overlap","no_op_start_date","death_before_study_entry","not_female","not_in_fertile_age_at_study_entry_date")
+coords<-c("sex_or_birth_date_missing","birth_date_absurd","not_female","not_in_fertile_age_at_study_entry_date","insufficient_run_in","observed_time_no_overlap","no_op_start_date","death_before_study_entry")
 PERSONS_OP3[, (coords) := replace(.SD, is.na(.SD), 0), .SDcols = coords]
 
 # CREATE study_exit_date

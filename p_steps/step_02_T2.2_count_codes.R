@@ -1,4 +1,4 @@
-# create a dataset for each pair contectset,year, containing code counts
+# create a dataset for each pair concept set,year, containing code counts
 meaning<-c()
 FirstJan <- list()
 conditionYear <- list()
