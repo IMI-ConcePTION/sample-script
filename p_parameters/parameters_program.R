@@ -65,15 +65,16 @@ thisdatasource_has_prescriptions <- ifelse(thisdatasource %in% datasources_presc
 
 #study_start
 
-study_start <- as.Date(as.character(20170101), date_format)
+study_start <- as.Date(as.character(20180101), date_format)
 
 # study_end
 
-study_end <- as.Date(as.character(20200531), date_format)
+study_end <- as.Date(as.character(20181231), date_format)
+
 
 #study_years
 
-study_years <- c("2017","2018","2019","2020")
+study_years <- c("2018")
 
 # years component analysis
 
