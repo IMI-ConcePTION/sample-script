@@ -2,20 +2,15 @@
 # DESCRIBE THE CONCEPT SETS
 ###################################################################
 
-# we need to create two groups of meanings: one referring to hospitals HOSP (excluding emergency care) and one referring to primary care PC
-meanings_of_this_study<-vector(mode="list")
-meanings_of_this_study[["HOSP"]]=c("hospitalisation_primary","hospitalisation_secondary","hospital_diagnosis","hopitalisation_diagnosis_unspecified","episode_primary_diagnosis","episode_secondary_diagnosis","diagnosis_procedure","hospitalisation_associated","hospitalisation_linked")
-meanings_of_this_study[["PC"]]=c("primary_care_event","primary_care_diagnosis")
-
 
 OUTCOME_events<-list()
-OUTCOME_events<-c("ALI","AKI","MYOCARD")
+OUTCOME_events<-c("ALI","ANAPHYL")
 
-OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","AKI_narrow","AKI_possible","MYOCARD_narrow","MYOCARD_possible","CAD_narrow","CAD_possible","HF_narrow","HF_possible")
+OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","ANAPHYL_narrow","ANAPHYL_possible")
 
 COV_conceptssets <- c("COVCOPD","COVHIV","COVCKD","COVDIAB")
 
-DRUGS_conceptssets <- c("DP_CVD","DP_COVHIV","DP_COVCKD","DP_COVCOPD","DP_COVDIAB")
+DRUGS_conceptssets <- c("DP_CVD","DP_COVDIAB","DP_COVHIV","DP_COVCKD","DP_COVCOPD")
 
 concept_sets_of_our_study <- c(OUTCOMES_conceptssets,COV_conceptssets, DRUGS_conceptssets)
 
@@ -23,10 +18,10 @@ concept_sets_of_our_study <- c(OUTCOMES_conceptssets,COV_conceptssets, DRUGS_con
 
 concept_set_domains <- vector(mode="list")
 
+concept_set_domains[["ANAPHYL_narrow"]] = "Diagnosis"
+concept_set_domains[["ANAPHYL_possible"]] = "Diagnosis"
 concept_set_domains[["ALI_narrow"]] = "Diagnosis"
 concept_set_domains[["ALI_possible"]] = "Diagnosis"
-concept_set_domains[["AKI_narrow"]] = "Diagnosis"
-concept_set_domains[["AKI_possible"]] = "Diagnosis"
 concept_set_domains[["MYOCARD_narrow"]] = "Diagnosis"
 concept_set_domains[["MYOCARD_possible"]] = "Diagnosis"
 concept_set_domains[["CAD_narrow"]] = "Diagnosis"
@@ -52,6 +47,23 @@ concept_set_domains[["DP_COVCOPD"]] = "Medicines"
 concept_set_codes_our_study<-vector(mode="list")
 concept_set_codes_our_study_excl<-vector(mode="list")
 
+#--------------------------
+# DM
+concept_set_codes_our_study[["DM_narrow"]][["ICD9"]] <- c()
+concept_set_codes_our_study[["DM_possible"]][["ICD9"]] <- c("250","250.0","250.1","250.5","250.6","250.7","250.9")
+concept_set_codes_our_study[["DM_narrow"]][["ICD10"]] <- c("E10","E10.6","E10.69")
+concept_set_codes_our_study[["DM_possible"]][["ICD10"]] <- c("E08","E09","E10","E12","E13","E11","E11.6","E11.69","E13.6","E13.69","E14")
+concept_set_codes_our_study_excl[["DM_possible"]][["ICD10"]] <- c("E10","E10.6","E10.69")
+concept_set_codes_our_study[["DM_narrow"]][["READ"]] <- c("X40J4","C108.","C10E.")
+concept_set_codes_our_study[["DM_possible"]][["READ"]] <- c("C10..","C100.","C100z","C101.","C101z","C105.","C105z","C107z","C10y0","C10y1","C10yy","C10z.","C10zz","Cyu20","G73y0","X00Ag","X40J5","XE10I","C10..","C100.","C100z","C101.","C101z","C105.","C105z","C106.","C107.","C107z","C10F.","C10y0","C10y1","C10yy","C10z.","C10zz","Cyu20","F372.","G73y0")
+concept_set_codes_our_study_excl[["DM_possible"]][["READ"]] <- c("X40J4","C108.","C10E.")
+concept_set_codes_our_study[["DM_narrow"]][["ICPC"]] <- c("T89001","T89002","T89003","T90004","T90006","T90008")
+concept_set_codes_our_study[["DM_possible"]][["ICPC"]] <- c("T90","N94012","T89004","T90002","T90003","T90005","T90007","T90009")
+concept_set_codes_our_study_excl[["DM_possible"]][["ICPC"]] <- c("T89001","T89002","T89003","T90004","T90006","T90008")
+concept_set_codes_our_study[["DM_narrow"]][["SNOMED"]] <- c("D-2387","D-241X","154673001","190322003","190362004","267469001","46635009")
+concept_set_codes_our_study[["DM_possible"]][["SNOMED"]] <- c("D-2381","D-2386","D-2394","D-241Y","D-8X52","111552007","127014009","154671004","154672006","154674007","154678005","154683002","190321005","190323008","190324002","190328004","190343002","190348006","190349003","190353001","190354007","190361006","190384004","190418009","190419001","190420007","190422004","190426001","191044006","191045007","193182005","230572002","24927004","25093002","267383000","267467004","267468009","267471001","267472008","267473003","372069003","420422005","44054006","73211009","74627003","866003","982001")
+concept_set_codes_our_study_excl[["DM_possible"]][["SNOMED"]] <- c("D-2387","D-241X","154673001","190322003","190362004","267469001","46635009")
+
 
 #--------------------------
 # ALI
@@ -59,7 +71,7 @@ concept_set_codes_our_study[["ALI_narrow"]][["ICD9"]] <- c("570","572.2","573.3"
 concept_set_codes_our_study[["ALI_possible"]][["ICD9"]] <- c()
 concept_set_codes_our_study[["ALI_narrow"]][["ICD10"]] <- c("B17.9","K71","K71.0","K71.1","K71.2","K71.6","K71.7","K71.8","K71.9","K72","K72.0","K72.01","K72.9","K72.91","K75.9")
 concept_set_codes_our_study[["ALI_possible"]][["ICD10"]] <- c()
-concept_set_codes_our_study[["ALI_narrow"]][["READ"]] <- c("J60..","J600.","J6000","J6002","J600z","J601.","J6010","J6012","J601z","J60z.","J622.","J625.","J62y.","J633.","J6330","J633z","J635.","J6350","J6351","J6352","J6356","Jyu70","Jyu76")
+concept_set_codes_our_study[["ALI_narrow"]][["READ"]] <- c("J60..","J600.","J6000","J6002","J600z","J601.","J6010","J6012","J601z","J60z.","J633.","J6330","J633z","J635.","J6350","J6351","J6352","J6356","Jyu70","Jyu76","X0058","X306T","X3076","X3077","X3078","X3079","XE0bB","XM1Oq","J60..","J600.","J6000","J6002","J600z","J601.","J6010","J6012","J601z","J60z.","J622.","J625.","J62y.","J633.","J6330","J633z","J635.","J6350","J6351","J6352","J6356","Jyu70","Jyu76")
 concept_set_codes_our_study[["ALI_possible"]][["READ"]] <- c()
 concept_set_codes_our_study[["ALI_narrow"]][["ICPC"]] <- c("D72002","D72004","D97001","D97007","D97008")
 concept_set_codes_our_study[["ALI_possible"]][["ICPC"]] <- c()
@@ -74,9 +86,9 @@ concept_set_codes_our_study_excl[["AKI_possible"]][["ICD9"]] <- c("580.9","584.5
 concept_set_codes_our_study[["AKI_narrow"]][["ICD10"]] <- c("D59.3","K76.7","N00","N00.9","N12","N14.0","N14.1","N14.2","N17","N17-N19.9","N17.0","N17.2","N17.9","N19","N28.9","O08.4","O90.4","R39.2","S37.0","S37.00","T79.5")
 concept_set_codes_our_study[["AKI_possible"]][["ICD10"]] <- c("E83.41","E86","E86.1","E86.9","E87.2","I12","I12.9","I13","I13.9","N08","N28.9","R34")
 concept_set_codes_our_study_excl[["AKI_possible"]][["ICD10"]] <- c("D59.3","K76.7","N00","N00.9","N12","N14.0","N14.1","N14.2","N17","N17-N19.9","N17.0","N17.2","N17.9","N19","N28.9","O08.4","O90.4","R39.2","S37.0","S37.00","T79.5")
-concept_set_codes_our_study[["AKI_narrow"]][["READ"]] <- c("1AC0.","D1113","J624.","K04..","K040.","K04z.","K06..","K060.","K0A0.","K0C0.","K0C1.","K0C2.","Kyu2.","L393.","R0851","R08z0","S76..","S76z.")
-concept_set_codes_our_study[["AKI_possible"]][["READ"]] <- c("1AC1.","44J3.","44J3z","C3520","C3534","C362.","C3620","C362z","C365.","C365z","G22..","G22z.","G23..","G23z.","K00z.","K13..","R085.","R0850","R085z")
-concept_set_codes_our_study_excl[["AKI_possible"]][["READ"]] <- c("1AC0.","D1113","J624.","K04..","K040.","K04z.","K06..","K060.","K0A0.","K0C0.","K0C1.","K0C2.","Kyu2.","L393.","R0851","R08z0","S76..","S76z.")
+concept_set_codes_our_study[["AKI_narrow"]][["READ"]] <- c("1AC0.","D1113","J624.","K04..","K040.","K04z.","K0C1.","K0C2.","L393.","R0851","R08z0","S76..","X30I2","X30Il","X30Im","X30Io","X30JS","XC0dW","XE0dg","XE1mF","XM08q","Xa6nr","1AC0.","D1113","J624.","K04..","K040.","K04z.","K06..","K060.","K0A0.","K0C0.","K0C1.","K0C2.","Kyu2.","L393.","R0851","R08z0","S76..","S76z.")
+concept_set_codes_our_study[["AKI_possible"]][["READ"]] <- c("1AC1.","44J3z","C3520","C3534","C362.","C362z","C365.","C365z","G23..","G23z.","K00z.","R085.","R0850","R085z","X30Hc","X40PT","XE0Uf","XE0Ug","XE0dY","XE2q5","XM08i","XM0sW","1AC1.","44J3.","44J3z","C3520","C3534","C362.","C3620","C362z","C365.","C365z","G22..","G22z.","G23..","G23z.","K00z.","K13..","R085.","R0850","R085z")
+concept_set_codes_our_study_excl[["AKI_possible"]][["READ"]] <- c("1AC0.","D1113","J624.","K04..","K040.","K04z.","K0C1.","K0C2.","L393.","R0851","R08z0","S76..","X30I2","X30Il","X30Im","X30Io","X30JS","XC0dW","XE0dg","XE1mF","XM08q","Xa6nr","1AC0.","D1113","J624.","K04..","K040.","K04z.","K06..","K060.","K0A0.","K0C0.","K0C1.","K0C2.","Kyu2.","L393.","R0851","R08z0","S76..","S76z.")
 concept_set_codes_our_study[["AKI_narrow"]][["ICPC"]] <- c("U05001","U88010","U99005","U99022","U99030")
 concept_set_codes_our_study[["AKI_possible"]][["ICPC"]] <- c("K87002","K87003","U05006","U88001","U88007","U99029")
 concept_set_codes_our_study_excl[["AKI_possible"]][["ICPC"]] <- c("U05001","U88010","U99005","U99022","U99030")
@@ -84,6 +96,25 @@ concept_set_codes_our_study[["AKI_narrow"]][["SNOMED"]] <- c("D-4294","D-6345","
 concept_set_codes_our_study[["AKI_possible"]][["SNOMED"]] <- c("D-1085","D-1185","D-6502","D-6704","D-7374","F-10513","F-66104","F-70104","113075003","139461002","144007006","154757004","154763008","155299005","155850003","155871008","158477003","158478008","158482005","166713004","166718008","190887001","190895002","190897005","19351000","194773000","194775007","194776008","194782006","197578003","197588002","20165001","207180001","207181002","207185006","266230002","266612003","266613008","266624005","266627003","271845002","274108006","28560003","365757006","37472003","38481006","51387008","59455009","66978005","816082000","83128009","86234004","90708001")
 concept_set_codes_our_study_excl[["AKI_possible"]][["SNOMED"]] <- c("D-4294","D-6345","D-6510","D-6511","D-6516","D-6760","D-8017","F-66105","M-40000","M-53130","M-53150","NOCODE","111407006","123308008","13010001","139460001","14669001","155850003","155854007","155855008","156092003","157343006","157666004","158479000","158493007","197578003","197649009","197653006","197656003","197657007","197680004","197750002","197751003","197752005","198524000","207182009","207199005","210209001","212376001","236386005","236423003","236424009","23697004","2472002","264536006","266553002","266613008","266616000","269158000","270918008","28689008","298015003","35455006","367481000119108","40095003","42399005","445646001","51292008","55655006","59400006","61503006","723188008","723189000","733839001")
 
+
+
+#--------------------------
+# ANAPHYL
+concept_set_codes_our_study[["ANAPHYL_narrow"]][["ICD9"]] <- c("995.0","995.6","995.60","995.61","995.62","995.63","995.64","995.65","995.66","995.67","995.68","995.69","999.4","995.0","995.6","995.60","995.61","995.62","995.63","995.64","995.65","995.66","995.67","995.68","995.69")
+concept_set_codes_our_study[["ANAPHYL_possible"]][["ICD9"]] <- c("458.9","782.3","785.50","995.1","995.3","458","458.9","708.0","782.3","782.5","785.50","995.2","995.27","995.3","995.4")
+concept_set_codes_our_study_excl[["ANAPHYL_possible"]][["ICD9"]] <- c("995.0","995.6","995.60","995.61","995.62","995.63","995.64","995.65","995.66","995.67","995.68","995.69","999.4","995.0","995.6","995.60","995.61","995.62","995.63","995.64","995.65","995.66","995.67","995.68","995.69")
+concept_set_codes_our_study[["ANAPHYL_narrow"]][["ICD10"]] <- c("T78.0","T78.00","T78.01","T78.02","T78.03","T78.04","T78.05","T78.06","T78.07","T78.08","T78.09","T78.2XXA","T78.2XXD","T78.2XXS","T80.5","T88.6")
+concept_set_codes_our_study[["ANAPHYL_possible"]][["ICD10"]] <- c("I95","I95.9","L50.0","R23.0","R57.9","R60.9","T78.3","T78.4","T78.40")
+concept_set_codes_our_study_excl[["ANAPHYL_possible"]][["ICD10"]] <- c("T78.0","T78.00","T78.01","T78.02","T78.03","T78.04","T78.05","T78.06","T78.07","T78.08","T78.09","T78.2XXA","T78.2XXD","T78.2XXS","T80.5","T88.6")
+concept_set_codes_our_study[["ANAPHYL_narrow"]][["READ"]] <- c("SN50.","SN501","SP34.","X208h","X70vi","X70vl","X70vm","X70vo","X70vq","X70w1","X70w2","X70w7","X76E9","XE1BR","M280.","SN50.","SN500","SN501","SP34.")
+concept_set_codes_our_study[["ANAPHYL_possible"]][["READ"]] <- c("183Z.","G87..","G87z.","R023.","R0232","R023z","R025.","R0550","SN51.","X77Ux","X78zV","X79pp","X79pv","XE0qw","XE1BR","XE1ot","XM00r","XM02U","XM07N","XM0xz","XM1C7","Xa0ls","Xa1pQ","Xa1zh","16J5.","183..","183Z.","G87..","G87z.","M28..","M280.","R023.","R0232","R023z","R025.","R0550","SN51.","SN53.","SN530")
+concept_set_codes_our_study_excl[["ANAPHYL_possible"]][["READ"]] <- c("SN50.","SN501","SP34.","X208h","X70vi","X70vl","X70vm","X70vo","X70vq","X70w1","X70w2","X70w7","X76E9","XE1BR","M280.","SN50.","SN500","SN501","SP34.")
+concept_set_codes_our_study[["ANAPHYL_narrow"]][["ICPC"]] <- c("A12001","A12004","A92005","A92012")
+concept_set_codes_our_study[["ANAPHYL_possible"]][["ICPC"]] <- c("A12","A12002","A12007","A12009","A92007","A92008","A92010","D20021","K07003","K29005","K29022","K88001","K88006","S04006","S08011")
+concept_set_codes_our_study_excl[["ANAPHYL_possible"]][["ICPC"]] <- c("A12001","A12004","A92005","A92012")
+concept_set_codes_our_study[["ANAPHYL_narrow"]][["SNOMED"]] <- c("D-4810","D-4811","F-42750","F-42880","10803007","111737003","157755003","212994002","212995001","213320003","241930003","241934007","241935008","241936009","241946006","241947002","241952007","35001004","373674001","39579001","419042001","427903006","429751004","441495001","79337003","87467006","91941002")
+concept_set_codes_our_study[["ANAPHYL_possible"]][["SNOMED"]] <- c("D-3541","D-3547","D-4651","F-42400","F-42510","F-70010","F-71100","M-04120","M-36500","U000308","106190000","119419001","12263007","127072000","139241006","139250008","155375008","155487000","155490006","156428000","157754004","157756002","157758001","158241008","158244000","158247007","158252002","158354004","161979002","161988006","195508000","201260002","206888002","206891002","206894005","206899000","207026006","20741006","212998004","212999007","21957007","257550005","266308000","267038008","267302008","269284003","269432007","269433002","271646004","274211000","274729009","278528006","27942005","282092005","3415004","366949006","367174000","400075008","40178009","41291007","416093006","418168000","418634005","418925002","421668005","421961002","423666004","45007003","699376002","79654002","82966003","91232002")
+concept_set_codes_our_study_excl[["ANAPHYL_possible"]][["SNOMED"]] <- c("D-4810","D-4811","F-42750","F-42880","10803007","111737003","157755003","212994002","212995001","213320003","241930003","241934007","241935008","241936009","241946006","241947002","241952007","35001004","373674001","39579001","419042001","427903006","429751004","441495001","79337003","87467006","91941002")
 
 #--------------------------
 # MYOCARD

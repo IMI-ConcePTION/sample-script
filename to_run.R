@@ -15,6 +15,7 @@ thisdir<-setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source(paste0(thisdir,"/p_parameters/parameters_program.R"))
 source(paste0(thisdir,"/p_parameters/parameters_CDM.R"))
 source(paste0(thisdir,"/p_parameters/concept_sets.R"))
+source(paste0(thisdir,"/p_parameters/algorithms.R"))
 
 
 #run scripts
