@@ -71,7 +71,6 @@ study_start <- as.Date(as.character(20180101), date_format)
 
 study_end <- as.Date(as.character(20181231), date_format)
 
-
 #study_years
 
 study_years <- c("2018")

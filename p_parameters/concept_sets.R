@@ -4,9 +4,9 @@
 
 
 OUTCOME_events<-list()
-OUTCOME_events<-c("ALI","ANAPHYL")
+OUTCOME_events<-c("ALI","ANAPHYL","MYOCARD","CAD","HF")
 
-OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","ANAPHYL_narrow","ANAPHYL_possible")
+OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","ANAPHYL_narrow","ANAPHYL_possible","MYOCARD_narrow","MYOCARD_possible","HF_possible", "HF_narrow","CAD_possible", "CAD_narrow")
 
 COV_conceptssets <- c("COVCOPD","COVHIV","COVCKD","COVDIAB")
 

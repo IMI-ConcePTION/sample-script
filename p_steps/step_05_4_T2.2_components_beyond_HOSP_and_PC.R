@@ -89,7 +89,7 @@ for (OUTCOME in OUTCOME_events) {
   
   nameobject <- paste0("D3_beyond_HOSP_PC_components_",OUTCOME)
   assign(nameobject, OUTCOME_aggregated)
-  save(nameobject,file=paste0(dirtemp,paste0(nameobject,".RData")),list=nameobject)
+  #save(nameobject,file=paste0(dirtemp,paste0(nameobject,".RData")),list=nameobject)
   fwrite(get(nameobject),file=paste0(direxp,paste0(nameobject,".csv")))
   
   rm(nameobject , list = nameobject)
