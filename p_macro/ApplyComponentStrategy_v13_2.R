@@ -49,11 +49,7 @@ ApplyComponentStrategy <- function(dataset,
                                    namePROP="PROP",
                                    strata=NULL,
                                    figure=T,
-<<<<<<< HEAD:p_macro/ApplyComponentStrategy_v13_1.R
                                    output_name,
-=======
-                                   output_name="output",
->>>>>>> development:p_macro/ApplyComponentStrategy_v12.R
                                    numcomponents=NULL,
                                    namevar_10=NULL ,
                                    namevar_11 =NULL,
@@ -349,8 +345,10 @@ ApplyComponentStrategy <- function(dataset,
     x<-as.data.table(x)
 
     #save the second output 
-    assign(sapply(strsplit(output_name, "/"), tail, 1),x)
-    save(list=sapply(strsplit(output_name, "/"), tail, 1), file=paste0(output_name,".RData")) 
+    if(!missing(output_name)){
+      assign(sapply(strsplit(output_name, "/"), tail, 1),x)
+      save(list=sapply(strsplit(output_name, "/"), tail, 1), file=paste0(output_name,".RData")) 
+    }
     
     if (figure==T){
 
