@@ -9,7 +9,7 @@ direxp <- paste0(thisdir,"/g_export/")
 dirmacro <- paste0(thisdir,"/p_macro/")
 dirfigure <- paste0(thisdir,"/g_figure/")
 extension <- c(".csv")
-dirpargen <- paste0(thisdir,"/g_parameters/")
+#dirpargen <- paste0(thisdir,"/g_parameters/")
 dirsmallcountsremoved <- paste0(thisdir,"/g_export_SMALL_COUNTS_REMOVED/")
 
 
@@ -18,7 +18,7 @@ suppressWarnings(if (!file.exists(diroutput)) dir.create(file.path( diroutput)))
 suppressWarnings(if (!file.exists(dirtemp)) dir.create(file.path( dirtemp)))
 suppressWarnings(if (!file.exists(direxp)) dir.create(file.path( direxp)))
 suppressWarnings(if (!file.exists(dirfigure)) dir.create(file.path( dirfigure)))
-suppressWarnings(if (!file.exists(dirpargen)) dir.create(file.path( dirpargen)))
+#suppressWarnings(if (!file.exists(dirpargen)) dir.create(file.path( dirpargen)))
 suppressWarnings(if (!file.exists(dirsmallcountsremoved)) dir.create(file.path(dirsmallcountsremoved)))
 suppressWarnings(if (!file.exists(dirfromCDM)) dir.create(file.path(dirfromCDM)))
 
@@ -65,15 +65,15 @@ thisdatasource_has_prescriptions <- ifelse(thisdatasource %in% datasources_presc
 
 #study_start
 
-study_start <- as.Date(as.character(20170101), date_format)
+study_start <- as.Date(as.character(20180101), date_format)
 
 # study_end
 
-study_end <- as.Date(as.character(20200531), date_format)
+study_end <- as.Date(as.character(20181231), date_format)
 
 #study_years
 
-study_years <- c("2017","2018","2019","2020")
+study_years <- c("2018")
 
 # years component analysis
 
@@ -98,8 +98,8 @@ source(paste0(dirmacro,"MergeFilterAndCollapse_v5.R"))
 source(paste0(dirmacro,"CreateSpells_v8DT.R"))
 source(paste0(dirmacro,"CreateFlowChart.R"))
 source(paste0(dirmacro,"CountPersonTimeV9.2.R"))
-source(paste0(dirmacro,"ApplyComponentStrategy_v12.R"))
-source(paste0(dirmacro,"CreateFigureComponentStrategy_v1.2.R"))
+source(paste0(dirmacro,"ApplyComponentStrategy_v13_2.R"))
+source(paste0(dirmacro,"CreateFigureComponentStrategy_v3.R"))
 
 
 #FUNCTION TO COMPUTE AGE

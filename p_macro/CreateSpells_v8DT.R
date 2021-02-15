@@ -26,6 +26,8 @@ CreateSpells<-function(dataset,id,start_date,end_date,category,category_is_numer
   library(magrittr)
   if (!require("lubridate")) install.packages("lubridate")
   library(lubridate)
+  if (!require("dtplyr")) install.packages("dtplyr")
+  library(dtplyr) 
 
   dataset<-dataset[,(start_date) := lubridate::ymd(get(start_date))][, (end_date) := lubridate::ymd(get(end_date))]
   
@@ -115,8 +117,8 @@ CreateSpells<-function(dataset,id,start_date,end_date,category,category_is_numer
 
       CAT<-CAT[!grepl("NA", category)]
       variables<-c(id, "entry_spell_category", "exit_spell_category", "category")
-      CAT<-CAT[order(get(id), entry_spell_category)][, ..variables][, `:=`(num_spell = seq_along(..category)), keyby = .(person_id)]
-      CAT<-CAT[, num_spell := rowid(person_id)]
+      CAT<-CAT[order(get(id), entry_spell_category)][, ..variables][, `:=`(num_spell = seq_along(..category)), keyby = c(id)]
+      CAT<-CAT[, num_spell := rowid(get(id))]
 
       export_df=rbind(export_df,CAT,fill=T)
     }

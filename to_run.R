@@ -15,6 +15,7 @@ thisdir<-setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source(paste0(thisdir,"/p_parameters/parameters_program.R"))
 source(paste0(thisdir,"/p_parameters/parameters_CDM.R"))
 source(paste0(thisdir,"/p_parameters/concept_sets.R"))
+source(paste0(thisdir,"/p_parameters/algorithms.R"))
 
 
 #run scripts
@@ -44,9 +45,9 @@ source(paste0(thisdir,"/p_steps/step_05_6_T2.3_ALL_covariates_at_baseline.R"))
 
 # 06 CREATE D4s
 source(paste0(thisdir,"/p_steps/step_06_1_T3_aggregate_baseline_characteristics.R"))
-source(paste0(thisdir,"/p_steps/step_06_2_T3_aggregate_baseline_characteristics_ALL.R"))
-source(paste0(thisdir,"/p_steps/step_06_3_T3_apply_component_strategy.R"))
-source(paste0(thisdir,"/p_steps/step_06_4_T3_create_person_time.R"))
+#source(paste0(thisdir,"/p_steps/step_06_2_T3_aggregate_baseline_characteristics_ALL.R"))
+source(paste0(thisdir,"/p_steps/step_06_2_T3_apply_component_strategy.R"))
+source(paste0(thisdir,"/p_steps/step_06_3_T3_create_person_time.R"))
 
 print("End of the script")
 
