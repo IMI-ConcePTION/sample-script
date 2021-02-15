@@ -10,6 +10,7 @@ OUTCOMES_conceptssets <- c("ALI_narrow","ALI_possible","ANAPHYL_narrow","ANAPHYL
 
 COV_conceptssets <- c("COVCOPD","COVCKD","COVDIAB","MYOCARD_narrow","MYOCARD_possible","HF_possible", "HF_narrow","CAD_possible","CAD_narrow")
 
+COVnames<-c("CV","COVCOPD","COVCKD","COVDIAB")
 
 DRUGS_conceptssets <- c("DP_CVD","DP_COVDIAB","DP_COVCKD","DP_COVCOPD")
 

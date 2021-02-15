@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 sex,year,Ageband,Persontime,Persontime_ALI_narrow,Persontime_ALI_broad,Persontime_ANAPHYL_narrow,Persontime_ANAPHYL_broad,ALI_narrow_b,ALI_broad_b,ANAPHYL_narrow_b,ANAPHYL_broad_b
 0,2018,0-19,22821,22821,22821,22587,22222,0,0,1,1
 0,2018,20-29,40725,40568,40568,40725,40725,1,1,0,0
@@ -6,12 +5,3 @@ sex,year,Ageband,Persontime,Persontime_ALI_narrow,Persontime_ALI_broad,Persontim
 0,2018,40-49,66531,66531,66531,66531,66531,0,0,0,0
 0,2018,50-59,44055,43815,43815,44055,43821,1,1,0,1
 0,2018,,-6649,-6649,-6649,-6649,-6649,0,0,0,0
-=======
-sex,year,Ageband,Persontime,Persontime_ALI_narrow,Persontime_ALI_broad,Persontime_ANAPHYL_narrow,Persontime_ANAPHYL_broad,Persontime_CAD_narrow,Persontime_CAD_broad,Persontime_HF_broad,ALI_narrow_b,ALI_broad_b,ANAPHYL_narrow_b,ANAPHYL_broad_b,CAD_narrow_b,CAD_broad_b,HF_broad_b
-0,2018,0-19,22821,22821,22821,22587,22222,22821,22821,22821,0,0,1,1,0,0,0
-0,2018,20-29,40725,40568,40568,40725,40725,40725,40725,40725,1,1,0,0,0,0,0
-0,2018,30-39,48234,48234,48234,48077,48077,48234,48234,48234,0,0,1,1,0,0,0
-0,2018,40-49,66531,66531,66531,66531,66531,66531,66531,66531,0,0,0,0,0,0,0
-0,2018,50-59,44055,43815,43815,44055,43821,44055,44055,44055,1,1,0,1,0,0,0
-0,2018,,-6649,-6649,-6649,-6649,-6649,-6649,-6649,-6649,0,0,0,0,0,0,0
->>>>>>> development

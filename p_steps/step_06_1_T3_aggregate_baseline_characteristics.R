@@ -35,7 +35,7 @@ row.names(D4_descriptive_dataset_covariate)<-c("0","1")
 
 
 ## second part of table of coviariate (also DP)
-COVnames<-c("CV","COVCOPD","COVHIV","COVCKD","COVDIAB")
+
 names_var <- c("all_covariates_non_CONTR")
 for (cov in COVnames ){
   if ( cov!="CV" ){

@@ -14,8 +14,6 @@ CV<- rbind(HF_narrow, HF_possible,MYOCARD_narrow,MYOCARD_possible,CAD_narrow, CA
 
 rm(HF_narrow,MYOCARD_narrow,HF_possible,MYOCARD_possible, CAD_narrow, CAD_possible)
 
-COVnames<-c("CV","COVCOPD","COVHIV","COVCKD","COVDIAB")
-
 load(paste0(diroutput,"D4_study_population.RData"))
 D3_study_population_covariates<-D4_study_population[,.(person_id, study_entry_date)]
 
@@ -43,6 +41,6 @@ for (file in COVnames) {
 
 save(D3_study_population_covariates,file=paste0(dirtemp,"D3_study_population_covariates.RData"))
 
-rm(CV,COVCOPD,COVHIV,COVCKD,COVDIAB) 
+rm(CV,COVCOPD,COVCKD,COVDIAB) 
 
 
