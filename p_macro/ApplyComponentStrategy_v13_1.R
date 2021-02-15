@@ -49,7 +49,11 @@ ApplyComponentStrategy <- function(dataset,
                                    namePROP="PROP",
                                    strata=NULL,
                                    figure=T,
+<<<<<<< HEAD:p_macro/ApplyComponentStrategy_v13_1.R
                                    output_name,
+=======
+                                   output_name="output",
+>>>>>>> development:p_macro/ApplyComponentStrategy_v12.R
                                    numcomponents=NULL,
                                    namevar_10=NULL ,
                                    namevar_11 =NULL,
