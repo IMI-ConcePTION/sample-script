@@ -60,6 +60,8 @@ for (OUTCOME in OUTCOME_events) {
   rm(list = namedatasetpossible)
 }
 
+D3_events_ALL_OUTCOMES <- datasetOUTCOMES
+
 save(list_outcomes_observed,file=paste0(dirtemp,"list_outcomes_observed.RData"))
 save(D3_events_ALL_OUTCOMES,file=paste0(dirtemp,"D3_events_ALL_OUTCOMES.RData"))
 
