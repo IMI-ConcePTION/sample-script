@@ -1,4 +1,4 @@
 A_sex_or_birth_date_missing,B_birth_date_absurd,C_not_female,D_not_in_fertile_age_at_study_entry_date,E_insufficient_run_in,F_death_before_study_entry,N
-1,1,1,0,0,0,292
-1,1,1,1,0,0,89
-1,1,1,1,1,1,611
+1,1,1,0,0,0,293
+1,1,1,1,0,0,93
+1,1,1,1,1,1,609
