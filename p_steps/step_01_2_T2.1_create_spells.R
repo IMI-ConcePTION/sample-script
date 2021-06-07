@@ -12,7 +12,8 @@ output_spells_category <- CreateSpells(
   id="person_id" ,
   start_date = "op_start_date",
   end_date = "op_end_date",
-  category ="op_meaning"
+  category ="op_meaning",
+  gap_allowed = 7
   )
 
 output_spells_category<-as.data.table(output_spells_category)
