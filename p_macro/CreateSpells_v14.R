@@ -12,7 +12,7 @@
 #' @param replace_missing_end_date: (optional). When specified, it contains a date to replace end_date when it is missing.
 #' @param overlap: (optional) default FALSE. If TRUE, overlaps of pairs of categories are processed as well.
 #' @param dataset_overlap: (optional) if overlap TRUE, the name of the file containing the overlap dataset
-#' @param gap_allowed:
+#' @param gap_allowed: number of  days allowed as a gap among spells
 #'
 #' NOTE: Developed under R 3.6.1
 
